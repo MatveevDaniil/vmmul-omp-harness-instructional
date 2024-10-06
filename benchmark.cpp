@@ -77,11 +77,13 @@ int main(int argc, char** argv)
     double* Y = Xcopy + max_size;
     double* Ycopy = Y + max_size;
 
+    std::chrono::time_point<std::chrono::system_clock> start;
+    std::chrono::duration<double> run_time;
            // load up matrics with some random numbers
     /* For each test size */
     for (int n : test_sizes) 
     {
-        printf("Working on problem size N=%d \n", n);
+        // printf("Working on problem size N=%d \n", n);
 
         fill(A, n * n);
         fill(X, n );
@@ -95,8 +97,10 @@ int main(int argc, char** argv)
         // insert start timer code here
 
         // call the method to do the work
+        start = std::chrono::system_clock::now();
         my_dgemv(n, A, X, Y); 
-
+        run_time = std::chrono::system_clock::now() - start;
+        printf("%d,%f\n", n, run_time.count());
         // insert end timer code here, and print out the elapsed time for this problem size
 
 
