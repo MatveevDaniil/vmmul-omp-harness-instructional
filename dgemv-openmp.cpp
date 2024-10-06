@@ -21,7 +21,7 @@ void my_dgemv(int n, double* A, double* x, double* y) {
     int start = thread_id * thread_range;
     int end = start + thread_range;
     for (int i = start; i < end; i++)
-      for (int j = 0; j < end; j++)
+      for (int j = 0; j < n; j++)
         y[i] += A[i * n + j] * x[j];
   }
 }
