@@ -57,10 +57,10 @@ target_compile_features(benchmark-blas PRIVATE c_std_11 c_restrict)
 target_compile_options(benchmark-blas PRIVATE -Wall -pedantic -march=native)
 
 set(SOURCES
-    benchmark-openmp-outer
-    benchmark-openmp-inner
-    benchmark-openmp-inner-thread-reuse
-    benchmark-openmp-inner-reduction
+    dgemv-openmp-outer
+    dgemv-openmp-inner
+    dgemv-openmp-inner-thread-reuse
+    dgemv-openmp-inner-reduction
 )
 
 foreach(SOURCE ${SOURCES})
