@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir -p "./results/"
+
 for source in basic vectorized blas
   do
   "./build/benchmark-$source" > "$source.csv"
