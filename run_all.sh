@@ -16,7 +16,7 @@ for source in outer inner-reduction
   for t in 1 4 16 64
     do
     export OMP_NUM_THREADS=$t
-    echo "OMP_NUM_THREASDS = " $OMP_NUM_THREADS
+    echo "$source $t" 
     "./build/benchmark-openmp-$source" > "openmp-$source.csv"
   done
 done
