@@ -57,18 +57,19 @@ target_compile_features(benchmark-blas PRIVATE c_std_11 c_restrict)
 target_compile_options(benchmark-blas PRIVATE -Wall -pedantic -march=native)
 
 set(SOURCES
-    dgemv-openmp-outer
-    dgemv-openmp-inner
-    dgemv-openmp-inner-thread-reuse
-    dgemv-openmp-inner-reduction
+    openmp-outer
+    openmp-inner
+    openmp-inner-thread-reuse
+    openmp-inner-reduction
 )
 
 foreach(SOURCE ${SOURCES})
-    add_executable(${SOURCE} ${SOURCE}.cpp)
-    target_link_libraries(${SOURCE} PRIVATE benchmark ${BLAS_LIBRARIES})
-    target_link_options(${SOURCE} PRIVATE -fopenmp)
-    target_compile_features(${SOURCE} PRIVATE c_std_11 c_restrict)
-    target_compile_options(${SOURCE} PRIVATE -fopenmp -Wall -pedantic -march=native -O1)
+  set(benchmark "benchmark-${SOURCE}")
+    add_executable(${benchmark} dgemv-${SOURCE}.cpp)
+    target_link_libraries(${benchmark} PRIVATE benchmark ${BLAS_LIBRARIES})
+    target_link_options(${benchmark} PRIVATE -fopenmp)
+    target_compile_features(${benchmark} PRIVATE c_std_11 c_restrict)
+    target_compile_options(${benchmark} PRIVATE -fopenmp -Wall -pedantic -march=native -O1)
 endforeach()
 
 # EOF
