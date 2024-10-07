@@ -68,5 +68,20 @@ target_link_options(benchmark-openmp-outer PRIVATE -fopenmp)
 target_compile_features(benchmark-openmp-outer PRIVATE c_std_11 c_restrict)
 target_compile_options(benchmark-openmp-outer PRIVATE -fopenmp -Wall -pedantic -march=native -O1)
 
+set(SOURCES
+    benchmark-openmp-outer
+    benchmark-openmp-inner
+    benchmark-openmp-inner-thread-reuse
+    benchmark-openmp-inner-reduction
+)
+
+foreach(SOURCE ${SOURCES})
+    add_executable(${SOURCE} ${SOURCE}.cpp)
+    target_link_libraries(${SOURCE} PRIVATE benchmark ${BLAS_LIBRARIES})
+    target_link_options(${SOURCE} PRIVATE -fopenmp)
+    target_compile_features(${SOURCE} PRIVATE c_std_11 c_restrict)
+    target_compile_options(${SOURCE} PRIVATE -fopenmp -Wall -pedantic -march=native -O1)
+endforeach()
+
 # EOF
 
