@@ -16,7 +16,7 @@ done
 export OMP_PLACES=threads
 export OMP_PROC_BIND=spread
 
-for source in outer inner inner-thread-reuse inner-reduction
+for source in outer inner inner-thread-reuse
   do
   for t in 1 4 16 64
     do
