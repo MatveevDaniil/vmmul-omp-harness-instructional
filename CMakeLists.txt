@@ -60,7 +60,6 @@ set(SOURCES
     openmp-outer
     openmp-inner
     openmp-inner-thread-reuse
-    openmp-inner-reduction
 )
 
 foreach(SOURCE ${SOURCES})
