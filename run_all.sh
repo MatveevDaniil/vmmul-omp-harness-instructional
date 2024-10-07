@@ -16,13 +16,13 @@ done
 export OMP_PLACES=threads
 export OMP_PROC_BIND=spread
 
-for source in outer inner-reduction inner-thread-reuse inner-reduction
+for source in outer inner inner-thread-reuse inner-reduction
   do
   for t in 1 4 16 64
     do
     export OMP_NUM_THREADS=$t
     local_start=$(date +%s)
-    "./build/benchmark-openmp-$source" > "./results/openmp-$source.csv"
+    "./build/benchmark-openmp-$source" > "./results/openmp-$source-$t.csv"
     local_end=$(date +%s)
     local_time=$(( local_end - local_start ))
     global_time=$(( local_end - global_start ))
