@@ -4,7 +4,7 @@ mkdir -p "./results/"
 
 for source in basic vectorized blas
   do
-  "./build/benchmark-$source" > "$source.csv"
+  "./build/benchmark-$source" > "./results/$source.csv"
 done
 
 export OMP_PLACES=threads
@@ -17,6 +17,6 @@ for source in outer inner-reduction
     do
     export OMP_NUM_THREADS=$t
     echo "$source $t" 
-    "./build/benchmark-openmp-$source" > "openmp-$source.csv"
+    "./build/benchmark-openmp-$source" > "./results/openmp-$source.csv"
   done
 done
