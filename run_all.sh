@@ -10,7 +10,7 @@ for source in basic vectorized blas
   local_end=$(date +%s)
   local_time=$(( local_end - local_start ))
   global_time=$(( local_end - global_start ))
-  printf "runtime: %.1f,    global timer: %.1f\n" $local_time $global_time
+  printf "%s, runtime: %.1f, global timer: %.1f\n" $source $local_time $global_time
 done
 
 export OMP_PLACES=threads
@@ -27,6 +27,6 @@ for source in outer inner-reduction inner-thread-reuse inner-reduction
     local_time=$(( local_end - local_start ))
     global_time=$(( local_end - global_start ))
     echo "$source $t" 
-    printf "runtime: %.1f,    global timer: %.1f\n" $local_time $global_time
+    printf "%s %d, runtime: %.1f, global timer: %.1f\n" $source $t $local_time $global_time
   done
 done
