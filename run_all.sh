@@ -26,7 +26,6 @@ for source in outer inner-reduction inner-thread-reuse inner-reduction
     local_end=$(date +%s)
     local_time=$(( local_end - local_start ))
     global_time=$(( local_end - global_start ))
-    echo "$source $t" 
     printf "%s %d, runtime: %.1f, global timer: %.1f\n" $source $t $local_time $global_time
   done
 done
