@@ -27,7 +27,7 @@ void my_dgemv(int n, double* A, double* x, double* y) {
       for (int j = 0; j < n; j++)
         thread_sum += A[i * n + j] * x[j];
       #pragma omp atomic
-      sum += local_sum;
+      sum += thread_sum;
     }
     y[i] += sum;
   }
