@@ -6,7 +6,8 @@
 const char* dgemv_desc = "OpenMP dgemv.";
 
 void my_dgemv(int n, double* A, double* x, double* y) {
-  #pragma omp parallel {
+  #pragma omp parallel 
+  {
     for (int i = 0; i < n; i++)
     #pragma omp for reduction(+:y[i])
     for (int j = 0; j < n; j++)
