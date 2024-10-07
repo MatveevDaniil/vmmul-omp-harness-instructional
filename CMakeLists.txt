@@ -56,18 +56,6 @@ target_link_libraries(benchmark-blas PRIVATE benchmark ${BLAS_LIBRARIES})
 target_compile_features(benchmark-blas PRIVATE c_std_11 c_restrict)
 target_compile_options(benchmark-blas PRIVATE -Wall -pedantic -march=native)
 
-add_executable(benchmark-openmp-inner dgemv-openmp-inner.cpp)
-target_link_libraries(benchmark-openmp-inner PRIVATE benchmark ${BLAS_LIBRARIES})
-target_link_options(benchmark-openmp-inner PRIVATE -fopenmp)
-target_compile_features(benchmark-openmp-inner PRIVATE c_std_11 c_restrict)
-target_compile_options(benchmark-openmp-inner PRIVATE -fopenmp -Wall -pedantic -march=native -O1)
-
-add_executable(benchmark-openmp-outer dgemv-openmp-outer.cpp)
-target_link_libraries(benchmark-openmp-outer PRIVATE benchmark ${BLAS_LIBRARIES})
-target_link_options(benchmark-openmp-outer PRIVATE -fopenmp)
-target_compile_features(benchmark-openmp-outer PRIVATE c_std_11 c_restrict)
-target_compile_options(benchmark-openmp-outer PRIVATE -fopenmp -Wall -pedantic -march=native -O1)
-
 set(SOURCES
     benchmark-openmp-outer
     benchmark-openmp-inner
