@@ -18,10 +18,18 @@ const char* dgemv_desc = "OpenMP dgemv.";
 */
 
 void my_dgemv(int n, double* A, double* x, double* y) {
-  for (int i = 0; i < n; i++)
-    #pragma omp parallel for
-    for (int j = 0; j < n; j++)
+  for (int i = 0; i < n; i++) {
+    double sum = 0;
+    #pragma omp parallel 
+    {
+      double thread_sum = 0;
+      #pragma omp for
+      for (int j = 0; j < n; j++)
+        thread_sum += A[i * n + j] * x[j];
       #pragma omp atomic
-      y[i] += A[i * n + j] * x[j];
+      sum += local_sum;
+    }
+    y[i] += sum;
+  }
 }
 
