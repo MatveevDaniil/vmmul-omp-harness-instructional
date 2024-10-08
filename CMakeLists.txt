@@ -59,7 +59,6 @@ target_compile_options(benchmark-blas PRIVATE -Wall -pedantic -march=native)
 set(SOURCES
     openmp-outer
     openmp-inner
-    openmp-inner-reduction
     openmp-inner-thread-reuse
 )
 
